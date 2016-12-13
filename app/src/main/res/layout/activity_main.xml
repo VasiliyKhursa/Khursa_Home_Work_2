@@ -1,0 +1,73 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="10"
+
+    tools:context="com.example.l04_01_homework.MainActivity" >
+
+    <TableLayout
+        android:id="@+id/tableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="9"
+        android:background="@android:color/darker_gray"
+        android:weightSum="4" >
+
+        <include layout="@layout/table_row" />
+
+        <include layout="@layout/table_row" />
+
+        <include layout="@layout/table_row" />
+
+        <include layout="@layout/table_row" />
+    </TableLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/height_row"
+        android:layout_weight="1"
+        android:background="@android:color/white"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/padding"
+        android:paddingTop="@dimen/padding"
+        android:weightSum="3" >
+
+        <ImageButton
+            android:id="@+id/btnCall"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:contentDescription="@null"
+            android:gravity="center"
+            android:src="@android:drawable/ic_menu_call" />
+
+        <Button
+            android:id="@+id/btnApp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:gravity="center"
+            android:text="@string/btn_app" />
+
+        <ImageButton
+            android:id="@+id/btnSms"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginEnd="@dimen/margin"
+            android:layout_marginStart="@dimen/margin"
+            android:layout_weight="1"
+            android:background="@android:color/darker_gray"
+            android:contentDescription="@null"
+            android:gravity="center"
+            android:src="@android:drawable/ic_media_play" />
+    </LinearLayout>
+
+</LinearLayout>
