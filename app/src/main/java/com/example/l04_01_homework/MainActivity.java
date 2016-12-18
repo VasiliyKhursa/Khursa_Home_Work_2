@@ -19,8 +19,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         setContentView(R.layout.activity_main);
 
         ImageButton btnCall = (ImageButton) findViewById(R.id.btnCall);
-        Button btnApp = (Button) findViewById(R.id.btnApp);
         ImageButton btnSms = (ImageButton) findViewById(R.id.btnSms);
+        Button btnApp = (Button) findViewById(R.id.btnApp);
 
         btnCall.setOnClickListener(this);
         btnApp.setOnClickListener(this);
@@ -41,6 +41,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
+        switch (id) {
+            case R.id.itemSettings:
+                break;
+
+            default:
+                break;
+        }
         return super.onOptionsItemSelected(item);
     }
 
@@ -54,15 +61,13 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 intent = new Intent(Intent.ACTION_DIAL);
                 break;
             case R.id.btnApp:
-                intent = new Intent(this, ActivitySecond.class);
+                intent = new Intent(this, ActivitySoftware.class);
                 break;
             case R.id.btnSms:
                 intent = new Intent(Intent.ACTION_VIEW);
                 intent.setData(Uri.parse("sms:"));
                 break;
         }
-
         startActivity(intent);
-
     }
 }

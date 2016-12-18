@@ -7,5 +7,12 @@
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
-
-</resources>
+    <!--
+        <style name="Btn" >
+            <item name="layout_width">100dp</item>
+            <item name="layout_height">50dp</item>
+            <item name="layout_gravity">center_horizontal</item>
+            <item name="gravity">center</item>
+        </style>
+    -->
+    </resources>

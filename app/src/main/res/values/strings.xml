@@ -1,7 +1,10 @@
 <resources>
-    <string name="app_name">PRJ</string>
+    <string name="app_name">Aplication</string>
     <string name="menu_settings">Settings</string>
     <string name="title_activity_second">ActivitySecond</string>
     <string name="btn_app">app</string>
     <string name="txtData">Data</string>
+    <string name="btnGrid">Grid</string>
+    <string name="btnLinear">Linear</string>
+
 </resources>

@@ -5,7 +5,7 @@
     android:orientation="vertical"
     android:weightSum="10"
 
-    tools:context="com.example.l04_01_homework.MainActivity" >
+    tools:context=".MainActivity" >
 
     <TableLayout
         android:id="@+id/tableLayout"
@@ -38,8 +38,8 @@
             android:id="@+id/btnCall"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin"
-            android:layout_marginStart="@dimen/margin"
+            android:layout_marginEnd="@dimen/marg_midl"
+            android:layout_marginStart="@dimen/marg_left_right"
             android:layout_weight="1"
             android:background="@android:color/darker_gray"
             android:contentDescription="@null"
@@ -50,8 +50,8 @@
             android:id="@+id/btnApp"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin"
-            android:layout_marginStart="@dimen/margin"
+            android:layout_marginEnd="@dimen/marg_midl"
+            android:layout_marginStart="@dimen/marg_midl"
             android:layout_weight="1"
             android:background="@android:color/darker_gray"
             android:gravity="center"
@@ -61,8 +61,8 @@
             android:id="@+id/btnSms"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginEnd="@dimen/margin"
-            android:layout_marginStart="@dimen/margin"
+            android:layout_marginEnd="@dimen/marg_left_right"
+            android:layout_marginStart="@dimen/marg_midl"
             android:layout_weight="1"
             android:background="@android:color/darker_gray"
             android:contentDescription="@null"
