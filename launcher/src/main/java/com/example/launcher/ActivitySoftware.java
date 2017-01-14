@@ -1,4 +1,4 @@
-package com.example.l04_01_homework;
+package com.example.launcher;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Filter;
 
+import com.example.launcher.RecyclerViewAdapter;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -119,7 +120,7 @@ public class ActivitySoftware extends Activity implements View.OnClickListener {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.l04_01_homework/http/host/path")
+                Uri.parse("android-app://com.example.launcher/http/host/path")
         );
         AppIndex.AppIndexApi.start(client, viewAction);
     }
@@ -138,7 +139,7 @@ public class ActivitySoftware extends Activity implements View.OnClickListener {
                 // Otherwise, set the URL to null.
                 Uri.parse("http://host/path"),
                 // TODO: Make sure this auto-generated app URL is correct.
-                Uri.parse("android-app://com.example.l04_01_homework/http/host/path")
+                Uri.parse("android-app://com.example.launcher/http/host/path")
         );
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();

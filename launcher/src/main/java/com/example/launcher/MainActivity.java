@@ -1,4 +1,4 @@
-package com.example.l04_01_homework;
+package com.example.launcher;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
                 intent = new Intent(Intent.ACTION_DIAL);
                 break;
             case R.id.btnApp:
-                intent = new Intent(this, ActivitySoftware.class);
+                intent = new Intent(this, com.example.launcher.ActivitySoftware.class);
                 break;
             case R.id.btnSms:
                 intent = new Intent(Intent.ACTION_VIEW);

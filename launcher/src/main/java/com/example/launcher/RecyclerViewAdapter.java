@@ -1,4 +1,4 @@
-package com.example.l04_01_homework;
+package com.example.launcher;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
