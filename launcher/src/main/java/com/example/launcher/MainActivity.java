@@ -4,12 +4,19 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageButton;
+
+import com.example.event.MessageEvent;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
 
 public class MainActivity extends AppCompatActivity implements OnClickListener {
 
@@ -35,6 +42,18 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
     }
 
     @Override
+    public void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
@@ -43,6 +62,8 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
 
         switch (id) {
             case R.id.itemSettings:
+                Log.i("myTag", "Send EventBus message");
+                EventBus.getDefault().post(new MessageEvent());
                 break;
 
             default:
@@ -70,4 +91,11 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         }
         startActivity(intent);
     }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        /* Do something */
+        Log.i("myTag", "Receive EventBus message");
+    };
 }
