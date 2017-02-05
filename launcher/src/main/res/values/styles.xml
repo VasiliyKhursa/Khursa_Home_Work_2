@@ -15,4 +15,13 @@
             <item name="gravity">center</item>
         </style>
     -->
+    <style name="MainBtnStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginEnd">@dimen/marg_midl</item>
+        <item name="android:layout_marginStart">@dimen/marg_midl</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">@android:color/darker_gray</item>
+        <item name="android:gravity">center</item>
+    </style>
     </resources>

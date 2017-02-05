@@ -29,11 +29,13 @@
             android:text="Linear" />
     </LinearLayout>
 
-
     <EditText
         android:id="@+id/edit"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:descendantFocusability="beforeDescendants"
+        android:focusableInTouchMode="true"
+       />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/listRecycl"

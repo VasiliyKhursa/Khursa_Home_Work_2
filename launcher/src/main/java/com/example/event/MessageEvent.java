@@ -5,5 +5,5 @@ package com.example.event;
  */
 
 public class MessageEvent {
-    int fild = 0;
+    public int field = 0;
 }

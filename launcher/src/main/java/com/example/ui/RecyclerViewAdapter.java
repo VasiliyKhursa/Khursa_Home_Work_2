@@ -1,4 +1,4 @@
-package com.example.launcher;
+package com.example.ui;
 
 import android.app.Activity;
 import android.content.ActivityNotFoundException;
@@ -15,6 +15,8 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.example.launcher.R;
 
 import java.util.ArrayList;
 import java.util.List;
