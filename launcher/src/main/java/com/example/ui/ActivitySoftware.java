@@ -126,12 +126,16 @@ public class ActivitySoftware extends Activity implements View.OnClickListener {
 		RecyclerView.LayoutManager layoutManager;
 		switch (view.getId()) {
 			case R.id.btnGrid:
+				mAdapter.setLayoutRes(R.layout.grid_item);
 				layoutManager = new GridLayoutManager(this, 3);
 				mRecyclerView.setLayoutManager(layoutManager);
 				break;
+
 			case R.id.btnList:
+				mAdapter.setLayoutRes(R.layout.list_item);
 				layoutManager = new LinearLayoutManager(this);
 				mRecyclerView.setLayoutManager(layoutManager);
+				break;
 		}
 	}
 
@@ -139,11 +143,13 @@ public class ActivitySoftware extends Activity implements View.OnClickListener {
 
 		progress.dismiss();
 
-		mAdapter = new RecyclerViewAdapter(ActivitySoftware.this, LoadApplications.applist);
+		mAdapter = new RecyclerViewAdapter(this, LoadApplications.applist);
+		mAdapter.setLayoutRes(R.layout.grid_item);
 		filterApp = mAdapter.getFilter();
 		mRecyclerView.setAdapter(mAdapter);
 
-		layoutManager = new GridLayoutManager(ActivitySoftware.this, 3);
+
+		layoutManager = new GridLayoutManager(this, 3);
 		mRecyclerView.setLayoutManager(layoutManager);
 	}
 

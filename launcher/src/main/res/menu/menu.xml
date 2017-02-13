@@ -8,20 +8,4 @@
         android:title="@string/menu_settings"
         tools:ignore="AppCompatResource">
     </item>
-    <item
-        android:id="@+id/itemSettings1"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:showAsAction="ifRoom"
-        android:title="Save"
-        tools:ignore="AppCompatResource">
-    </item>
-    <item
-        android:id="@+id/itemSettings2"
-        android:icon="@android:drawable/ic_menu_info_details"
-        android:showAsAction="ifRoom"
-        android:title="Load"
-        tools:ignore="AppCompatResource">
-    </item>
-
-    
 </menu>

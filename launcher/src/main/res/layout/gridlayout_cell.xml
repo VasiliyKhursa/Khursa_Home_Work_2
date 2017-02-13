@@ -1,24 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    xmlns:grid="http://schemas.android.com/apk/res-auto"
-    android:orientation="vertical"
-    android:layout_margin="3dp"
-    android:gravity="center"
-    grid:layout_columnWeight="1"
-    grid:layout_rowWeight="1">
+              xmlns:grid="http://schemas.android.com/apk/res-auto"
+              android:id="@+id/application_view"
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:layout_margin="5dp"
+              android:gravity="center"
+              android:orientation="vertical"
+              grid:layout_columnWeight="1"
+              grid:layout_rowWeight="1">
 
     <ImageView
         android:id="@+id/gridlayout_iv"
-        android:layout_height="match_parent"
-        android:layout_width="match_parent"
-        />
+        android:layout_width="64dp"
+        android:layout_height="64dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_margin="5dp" />
 
     <TextView
-        android:id="@+id/gridlayout_tv"
-        android:layout_width="wrap_content"
+        android:id="@+id/grid_text"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:visibility="gone"/>
-
+        android:layout_gravity="bottom|center_horizontal"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:gravity="center_horizontal"
+        android:padding="2dp" />
 </LinearLayout>

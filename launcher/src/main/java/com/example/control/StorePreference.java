@@ -4,6 +4,8 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.util.Log;
 
+import java.util.Map;
+
 /**
  * Created by Home on 31.01.2017.
  */
@@ -11,50 +13,74 @@ import android.util.Log;
 public class StorePreference {
 
     SharedPreferences sharedPreferences;
-    SharedPreferences.Editor ed;
+    static SharedPreferences.Editor ed;
+    public static final int MAX_ITEMS = 12;
 
-    private static final int MAX_ITEMS = 12;
-
-    String [] pack = new String[MAX_ITEMS];
+    static String [] pack = new String[MAX_ITEMS];
 
     public StorePreference(Context context) {
-
         sharedPreferences = context.getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
-
         ed = sharedPreferences.edit();
+        restoreItems();
     }
 
 
-    public void saveItems() {
+    public static void saveAllItems() {
         for (char i = 0; i < MAX_ITEMS; i++)
-            ed.putString("BTN" + Integer.toString(i), "package " + Integer.toString(i));
+            ed.putString("BTN" + Integer.toString(i), pack[i]);
         ed.commit();
+    }
 
+    public static void removeAllItems() {
+        for (char i = 0; i < MAX_ITEMS; i++) {
+            pack[i] = "";
+            ed.putString("BTN" + Integer.toString(i), pack[i]);
+        }
+        ed.commit();
     }
 
     public void restoreItems() {
         for (char i = 0; i < MAX_ITEMS; i++) {
-            String str = sharedPreferences.getString("BTN" + Integer.toString(i), "");
-            Log.i("myTag", "BTN" + Integer.toString(i) + " - " + str);
+            pack[i] = sharedPreferences.getString("BTN" + Integer.toString(i), "");
+            Log.i("myTag", "BTN" + Integer.toString(i) + " - " + pack[i]);
+            Map<String, String> mapList = (Map<String, String>) sharedPreferences.getAll();
         }
-
     }
 
-    public void turnItems(int item1, int item2){
+    public static void saveItem(int btn, String packag) {
+        pack[btn] = packag;
+        saveAllItems();
+    }
+
+
+    public static void turnItems(int item1, int item2) {
         String str = pack[item1];
         pack[item1] = pack[item2];
         pack[item2] = str;
 
-        saveItems();
+        saveAllItems();
     }
 
-    public void removeItem(int item) {
+    public static void removeItem(int item) {
         pack[item] = "";
-        saveItems();
+        saveAllItems();
+    }
+
+    public static void removeItemStr(String string) {
+        //pack[item] = "";
+       // saveAllItems();
+    }
+
+    public static int getItemNumber(String str) {
+        for (int i = 0; i < MAX_ITEMS; i++) {
+            if (pack[i].equals(str))
+                return i;
+        }
+        return -1;
     }
 
 
-    public int getLastFree(){
+    public static int getLastFree(){
         for (int i = 0; i < MAX_ITEMS; i++) {
             if (pack[i].equals(""))
                 return i;
@@ -63,7 +89,7 @@ public class StorePreference {
         return -1;
     }
 
-    public int getAllFree(){
+    public static int getAllFree(){
         int count = 0;
         for (int i = 0; i < MAX_ITEMS; i++) {
             if (!pack[i].equals(""))
@@ -72,11 +98,21 @@ public class StorePreference {
         return count;
     }
 
+    public static boolean isCheck(String str) {
+        boolean res = false;
+
+        for (int i = 0; i < MAX_ITEMS; i++){
+            if (pack[i].equals(str))
+                res = true;
+        }
+        return res;
+    }
+
     public int getMax() {
         return MAX_ITEMS;
     }
 
-    public String getItem(int i){
+    public static String getItem(int i){
         return pack[i];
     }
 

@@ -2,12 +2,15 @@ package com.example.launcher;
 
 import android.content.ClipData;
 import android.content.Context;
-import android.graphics.Color;
+import android.content.Intent;
+import android.util.Log;
 import android.view.DragEvent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.example.control.StorePreference;
 
 /**
  * Created by Paradise on 23.01.2017.
@@ -48,6 +51,8 @@ public class IListeners {
                 int nextViewId = parent.indexOfChild(view);
                 switch (dragEvent.getAction()){
                     case DragEvent.ACTION_DRAG_ENTERED:
+                        break;
+                    case DragEvent.ACTION_DROP:
                         if (currentViewId!= nextViewId && currentViewId < nextViewId){
                             parent.removeViewAt(nextViewId);
                             parent.removeViewAt(currentViewId);
@@ -60,10 +65,8 @@ public class IListeners {
                             parent.addView(currentView, nextViewId);
                             parent.addView(view,currentViewId);
                         }
-                        break;
-                    case DragEvent.ACTION_DROP:
                         currentView.setAlpha(1.0f);
-                        view.setBackgroundColor(Color.BLUE);
+                        StorePreference.turnItems(currentViewId, nextViewId);
                         break;
                     default:
                         break;
@@ -80,9 +83,7 @@ public class IListeners {
             public boolean onTouch(View view, MotionEvent event) {
                 switch (event.getAction()) {
                     case MotionEvent.ACTION_DOWN:
-                        view.setBackgroundColor(Color.RED);
                         break;
-
 
                 }
 
@@ -98,7 +99,16 @@ public class IListeners {
         return new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                view.setBackgroundColor(Color.GREEN);
+                String pack = view.findViewById(R.id.gridlayout_iv).getTag().toString();
+                Log.i("myTag", pack);
+               // Intent intent = new Intent();
+               // intent.setAction(pack);
+                //             context.startActivity(intent);
+
+                Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(pack);
+                context.startActivity(appIntent);
+
+
             }
         };
     }

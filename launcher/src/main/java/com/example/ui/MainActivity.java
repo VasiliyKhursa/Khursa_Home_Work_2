@@ -4,6 +4,8 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.ApplicationInfo;
+import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -20,6 +22,7 @@ import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.control.LoadApplications;
 import com.example.control.StorePreference;
@@ -66,10 +69,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
 
 		gridLayout = (GridLayout) findViewById(R.id.mainGrid);
-		//gridLayout.setLayoutParams();
+		gridLayout.setColumnCount(3);
+		gridLayout.setRowCount(4);
 
 		storePreference = new StorePreference(this);
-		storePreference.restoreItems();
 
 		br = new BroadcastReceiver() {
 			@Override
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 		};
 		registerReceiver(br, new IntentFilter(BROADCAST_ACTION));
 
-
+		//onLoadApplication();
 
 
 	}
@@ -123,14 +126,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 			case R.id.itemSettings:
 				break;
 
-			case R.id.itemSettings1:
-				storePreference.saveItems();
-				break;
-
-			case R.id.itemSettings2:
-				storePreference.restoreItems();
-				break;
-
 			default:
 				break;
 		}
@@ -171,19 +166,26 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 
 	public void onLoadApplication() {
 
-//		progress.dismiss();
-//
-//		mAdapter = new RecyclerViewAdapter(ActivitySoftware.this, LoadApplications.applist);
-//		filterApp = mAdapter.getFilter();
-//		mRecyclerView.setAdapter(mAdapter);
-//
-//		layoutManager = new GridLayoutManager(ActivitySoftware.this, 3);
-//		mRecyclerView.setLayoutManager(layoutManager);
-
+		gridLayout.removeAllViews();
 		for (int i = 0; i < 12; i++) {
 			View view = LayoutInflater.from(this).inflate(gridlayout_cell, gridLayout, false);
 			ImageView img = (ImageView) view.findViewById(R.id.gridlayout_iv);
-			img.setImageDrawable(getPackageManager().getApplicationIcon(LoadApplications.applist.get(i)));
+			TextView textView = (TextView) view.findViewById(R.id.grid_text);
+			if (!storePreference.getItem(i).equals("")) {
+				try {
+					ApplicationInfo info = getPackageManager().getApplicationInfo(storePreference.getItem(i), 0);
+					CharSequence label = getPackageManager().getApplicationLabel(info);
+					img.setImageDrawable(getPackageManager().getApplicationIcon(storePreference.getItem(i)));
+					Log.i("myTag", "onLoadApplication() i = " + i + " package - " + storePreference.getItem(i));
+					img.setTag(storePreference.getItem(i));
+					textView.setText(label);
+				} catch (PackageManager.NameNotFoundException e) {
+					e.printStackTrace();
+				}
+			}
+			else {
+				img.setTag("");
+			}
 
 
 			IListeners listenrs = new IListeners(this, view);
