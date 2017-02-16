@@ -111,9 +111,9 @@ public class IListeners {
     private class IGesture extends GestureDetector.SimpleOnGestureListener {
         @Override
         public boolean onDoubleTap(MotionEvent e) {
-
             return false;
         }
+
     }
 }
 
