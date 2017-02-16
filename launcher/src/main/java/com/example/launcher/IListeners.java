@@ -3,7 +3,6 @@ package com.example.launcher;
 import android.content.ClipData;
 import android.content.Context;
 import android.content.Intent;
-import android.util.Log;
 import android.view.DragEvent;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
@@ -100,10 +99,6 @@ public class IListeners {
             @Override
             public void onClick(View view) {
                 String pack = view.findViewById(R.id.gridlayout_iv).getTag().toString();
-                Log.i("myTag", pack);
-               // Intent intent = new Intent();
-               // intent.setAction(pack);
-                //             context.startActivity(intent);
 
                 Intent appIntent = context.getPackageManager().getLaunchIntentForPackage(pack);
                 context.startActivity(appIntent);
@@ -112,4 +107,14 @@ public class IListeners {
             }
         };
     }
+
+    private class IGesture extends GestureDetector.SimpleOnGestureListener {
+        @Override
+        public boolean onDoubleTap(MotionEvent e) {
+
+            return false;
+        }
+    }
 }
+
+

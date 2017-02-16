@@ -6,7 +6,6 @@ import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,12 +32,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 	static private PackageManager mPackManager;
 	static Activity activity;
 	private int layoutRes;
-
 	static Context cont;
-
 	int filterCount = 0;
 
-	static OnItemClickListener mItemClickListener;
 
 
 	public RecyclerViewAdapter(Context context, List<ApplicationInfo> objects) {
@@ -67,10 +63,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 			appName = (TextView) v.findViewById(R.id.app_name);
 			packageName = (TextView) v.findViewById(R.id.app_package);
 			imageView = (ImageView) v.findViewById(R.id.app_icon);
-			v.setOnClickListener(this);
 			checkBox = (CheckBox) v.findViewById(R.id.item_checkbox);
 			checkBox.setClickable(false);
 			checkBox.setEnabled(false);
+			v.setOnClickListener(this);
 		}
 
 		@Override
@@ -87,24 +83,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 					int freeItem = StorePreference.getLastFree();
 					StorePreference.saveItem(freeItem, ((TextView) view.findViewById(R.id.app_package)).getText().toString());
 				}
-				else {
-					Log.i("myTag", String.valueOf(((TextView) view.findViewById(R.id.app_package)).getText()));
-				}
 			}
 			notifyDataSetChanged();
 		}
-	}
-
-	public void onItemClick(View view, int position) {
-
-	}
-
-	public interface OnItemClickListener {
-		public void onItemClick(View view, int position);
-	}
-
-	public void SetOnClickListener(final OnItemClickListener mItemClickListener) {
-		this.mItemClickListener = mItemClickListener;
 	}
 
 	@Override

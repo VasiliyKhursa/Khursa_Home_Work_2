@@ -2,7 +2,6 @@ package com.example.control;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import android.util.Log;
 
 import java.util.Map;
 
@@ -15,11 +14,12 @@ public class StorePreference {
     SharedPreferences sharedPreferences;
     static SharedPreferences.Editor ed;
     public static final int MAX_ITEMS = 12;
-
+    Map<String, ?> mapAll;
     static String [] pack = new String[MAX_ITEMS];
 
     public StorePreference(Context context) {
         sharedPreferences = context.getSharedPreferences("PACKAGE", Context.MODE_PRIVATE);
+        mapAll = sharedPreferences.getAll();
         ed = sharedPreferences.edit();
         restoreItems();
     }
@@ -42,7 +42,6 @@ public class StorePreference {
     public void restoreItems() {
         for (char i = 0; i < MAX_ITEMS; i++) {
             pack[i] = sharedPreferences.getString("BTN" + Integer.toString(i), "");
-            Log.i("myTag", "BTN" + Integer.toString(i) + " - " + pack[i]);
             Map<String, String> mapList = (Map<String, String>) sharedPreferences.getAll();
         }
     }

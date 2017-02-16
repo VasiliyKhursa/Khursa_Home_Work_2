@@ -10,13 +10,11 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayout;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.GridView;
@@ -34,9 +32,9 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
-import static com.example.launcher.R.layout.gridlayout_cell;
+import static com.example.launcher.R.layout.item_cell;
 
-public class MainActivity extends AppCompatActivity implements OnClickListener, AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements OnClickListener {
 
 	GridView gridView;
 	ArrayAdapter<String> adapter;
@@ -77,14 +75,10 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 		br = new BroadcastReceiver() {
 			@Override
 			public void onReceive(Context context, Intent intent) {
-				Log.i("myTag", "MainActivity Broadcast receive");
 				onLoadApplication();
 			}
 		};
 		registerReceiver(br, new IntentFilter(BROADCAST_ACTION));
-
-		//onLoadApplication();
-
 
 	}
 
@@ -155,20 +149,16 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 	@Subscribe(threadMode = ThreadMode.MAIN)
 	public void onMessageEvent(MessageEvent event) {
 		/* Do something */
-		Log.i("myTag", "MainActivity Receive EventBus message, data = " + event.field);
 	}
 
 
-	@Override
-	public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-		Log.i("myTag", "MainActivity position = " + position);
-	}
+
 
 	public void onLoadApplication() {
 
 		gridLayout.removeAllViews();
-		for (int i = 0; i < 12; i++) {
-			View view = LayoutInflater.from(this).inflate(gridlayout_cell, gridLayout, false);
+		for (int i = 0; i < StorePreference.MAX_ITEMS; i++) {
+			View view = LayoutInflater.from(this).inflate(item_cell, gridLayout, false);
 			ImageView img = (ImageView) view.findViewById(R.id.gridlayout_iv);
 			TextView textView = (TextView) view.findViewById(R.id.grid_text);
 			if (!storePreference.getItem(i).equals("")) {
@@ -176,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements OnClickListener, 
 					ApplicationInfo info = getPackageManager().getApplicationInfo(storePreference.getItem(i), 0);
 					CharSequence label = getPackageManager().getApplicationLabel(info);
 					img.setImageDrawable(getPackageManager().getApplicationIcon(storePreference.getItem(i)));
-					Log.i("myTag", "onLoadApplication() i = " + i + " package - " + storePreference.getItem(i));
 					img.setTag(storePreference.getItem(i));
 					textView.setText(label);
 				} catch (PackageManager.NameNotFoundException e) {

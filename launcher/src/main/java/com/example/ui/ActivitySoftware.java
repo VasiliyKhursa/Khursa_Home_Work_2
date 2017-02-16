@@ -126,13 +126,14 @@ public class ActivitySoftware extends Activity implements View.OnClickListener {
 		RecyclerView.LayoutManager layoutManager;
 		switch (view.getId()) {
 			case R.id.btnGrid:
-				mAdapter.setLayoutRes(R.layout.grid_item);
+				mAdapter.setLayoutRes(R.layout.item_grid);
 				layoutManager = new GridLayoutManager(this, 3);
 				mRecyclerView.setLayoutManager(layoutManager);
+
 				break;
 
 			case R.id.btnList:
-				mAdapter.setLayoutRes(R.layout.list_item);
+				mAdapter.setLayoutRes(R.layout.item_list);
 				layoutManager = new LinearLayoutManager(this);
 				mRecyclerView.setLayoutManager(layoutManager);
 				break;
@@ -140,14 +141,12 @@ public class ActivitySoftware extends Activity implements View.OnClickListener {
 	}
 
 	public void onLoadApplication() {
-
 		progress.dismiss();
 
 		mAdapter = new RecyclerViewAdapter(this, LoadApplications.applist);
-		mAdapter.setLayoutRes(R.layout.grid_item);
+		mAdapter.setLayoutRes(R.layout.item_grid);
 		filterApp = mAdapter.getFilter();
 		mRecyclerView.setAdapter(mAdapter);
-
 
 		layoutManager = new GridLayoutManager(this, 3);
 		mRecyclerView.setLayoutManager(layoutManager);

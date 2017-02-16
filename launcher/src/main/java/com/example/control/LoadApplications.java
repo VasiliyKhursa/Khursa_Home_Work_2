@@ -54,9 +54,7 @@ public class LoadApplications extends AsyncTask<Void, Void, Void> {
 
 		// сообщаем об окончании задачи
 		EventBus.getDefault().post(new MessageEvent().field = END_FIND);
-
-		Intent intent = new Intent(MainActivity.BROADCAST_ACTION);
-		context.sendBroadcast(intent);
+		context.sendBroadcast(new Intent(MainActivity.BROADCAST_ACTION));
 	}
 
 
